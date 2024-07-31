@@ -1,0 +1,28 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Ocultar barra de desplazamiento */
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-type: x mandatory; /* Usar scroll snap horizontal */
+    overflow-x: auto;
+    scroll-behavior: smooth; /* Desplazamiento suave */
+}
+
+.page {
+    flex: none; /* Las páginas no deben encogerse ni crecer */
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start; /* Alinear al inicio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+}
