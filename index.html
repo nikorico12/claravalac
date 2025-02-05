@@ -3,16 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libro Web</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Clara Valac - Evil Cycle</title>
+    <style>
+        :root {
+            --verde-yandere: #2B8C44;    /* Verde característico */
+            --rosa-obsesivo: #FF69B4;    /* Rosa intenso */
+            --fondo-oscuro: #0A1A0F;     /* Fondo verde oscuro */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--fondo-oscuro);
+            color: #fff;
+        }
+
+        header {
+            background: linear-gradient(45deg, var(--verde-yandere), var(--rosa-obsesivo));
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .photo-card {
+            background: #1a2a1f;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--rosa-obsesivo);
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255,105,180,0.3);
+        }
+
+        .photo img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--verde-yandere);
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .photo img:hover {
+            opacity: 0.8;
+        }
+
+        .note {
+            padding: 20px;
+            font-style: italic;
+            color: #eee;
+            background: rgba(43,140,68,0.1);
+            border-bottom: 1px dashed var(--rosa-obsesivo);
+        }
+
+        .author {
+            padding: 15px;
+            background: var(--rosa-obsesivo);
+            color: white;
+            font-weight: bold;
+            text-align: right;
+            font-size: 0.95em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: var(--verde-yandere);
+            margin-top: 30px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid var(--rosa-obsesivo);
+            border-radius: 10px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+            
+            .photo img {
+                height: 350px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="book">
-        <div class="page" id="page1"><img src="imagenes/Captura de pantalla 2024-04-18 220136.png"></div>
-        <div class="page" id="page2"><img src="imagenes/Captura de pantalla 2024-04-18 220851_2.png"></div>
-        <div class="page" id="page3"><img src="imagenes/output_image.png"></div>
-        <!-- Añade más páginas según sea necesario -->
+    <header>
+        <h1>♡ Clara Valac: Evil Cycle ♡</h1>
+    </header>
+
+    <div class="gallery">
+        <!-- Ejemplo de tarjeta -->
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_36.png" alt="Clara Valac - Mirada intensa" onclick="openLightbox('images/Screenshot_36.png')">
+            </div>
+            <div class="note">
+                "Ehe..."
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_37.png" alt="Clara Valac - Sonrisa inquietante" onclick="openLightbox('images/Screenshot_37.png')">
+            </div>
+            <div class="note">
+                "I'm happy."
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_38.png" alt="Clara Valac - Rosa ensangrentada" onclick="openLightbox('images/Screenshot_38.png')">
+            </div>
+            <div class="note">
+                "Iruma-kun, you are mine."
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_40.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_40.png')">
+            </div>
+            <div class="note">
+                "Have you been good?.
+                Yes, mommy"
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_41.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_41.png')">
+            </div>
+            <div class="note">
+                "You missed me? Good boy."
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_42.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_42.png')">
+            </div>
+            <div class="note">
+                "They fit perfectly!"
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_43.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_43.png')">
+            </div>
+            <div class="note">
+                "I will never let you leave."
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_44.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_44.png')">
+            </div>
+            <div class="note">
+                "Irumachi and Azz Azz will live here with me forever."
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_45.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_45.png')">
+            </div>
+            <div class="note">
+                "Together forever."
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_46.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_46.png')">
+            </div>
+            <div class="note">
+                "Do you hate me? Cause I love you so much."
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_47.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_47.png')">
+            </div>
+            <div class="note">
+                "Kurara treasure chest."
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_48.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_48.png')">
+            </div>
+            <div class="note">
+                "My babies"
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_49.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_49.png')">
+            </div>
+            <div class="note">
+                "Goofy aaah Clara"
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
+
+        <div class="photo-card">
+            <div class="photo">
+                <img src="images/Screenshot_50.png" alt="Clara Valac - Mirada perdida" onclick="openLightbox('images/Screenshot_50.png')">
+            </div>
+            <div class="note">
+                "I won't mommy"
+            </div>
+            <div class="author">Source: Official Manga, Chapter 381</div>
+        </div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Lightbox -->
+    <div class="lightbox" onclick="closeLightbox()">
+        <img src="" alt="Imagen ampliada">
+    </div>
+
+    <footer>
+        <p>True love justifies everything! ♡◡♡</p>
+    </footer>
+
+    <script>
+        // Funciones para el lightbox
+        function openLightbox(imageSrc) {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.querySelector('.lightbox');
+            lightbox.classList.remove('active');
+        }
+
+        // Cerrar lightbox con la tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
